@@ -37,13 +37,18 @@ class LxlslbCPT extends React.Component{
     let law = _this.state.laws.map(function(data,index){
       return (
         <div>
-          <span>{data.vname}</span>
-          <span>上线时间:{data.donlinetime}</span>
+          <span className="vname">{data.vname}</span>
+          <span className="onlientime">在线时间:{data.dstarttime}</span><span>{data.dendtime}</span>
+          <div className="gap"></div>
         </div>
       );
     });
     return (
-        <List static>
+        <List static className="lists">
+        <div className="gap"></div>
+        <div>
+        <p className="titlezx">专家咨询预告</p>
+        </div> 
           {law}
         </List>
       );

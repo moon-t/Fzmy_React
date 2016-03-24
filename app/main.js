@@ -7,6 +7,7 @@ import Fzdt  from './fzdt.js';
 import Flfw  from './flfw.js';
 import Pfjy  from './pfjy.js';
 import Pfwh  from './pfwh.js';
+import Tzxq  from './tzxq.js';
 class App extends React.Component{
 	render(){
 		return(
@@ -16,6 +17,7 @@ class App extends React.Component{
     			<Route path="/flfw" component={Flfw} />
     			<Route path="/pfjy" component={Pfjy} />
     			<Route path="/pfwh" component={Pfwh} />
+          <Route path="/tzxq" component={Tzxq} />
   			</Router>
   		);
 	}

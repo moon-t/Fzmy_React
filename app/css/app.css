@@ -19,3 +19,135 @@
 .am-slider-default .am-control-nav{
 	bottom:-2px;
 }
+/*QueListCPT*/
+#qsspan1{
+	display: none;
+}
+.qsstatus{
+	margin: 0;
+	padding: 0;
+	margin-top: 10px;
+	margin-left: 20px;
+	font-size: 0.6em;
+}
+.qstitle{
+	margin: 0;
+	padding: 0;
+	margin-left: 20px;
+	font-size: 16px;
+	color: #0e90d2;
+	word-wrap: break-word;
+}
+#qscontent{
+	margin: 0;
+	padding: 0;
+	margin: 0 20px 0 20px;
+	font-size: 14px;
+	color: #757575;
+	  font-weight: 400;
+}
+.gap{
+	width: 100%;
+	height: 8px;
+	background-color:#F5F2F2
+}
+
+/*hflb*/
+#hftitle{
+	margin: 15px 20px 10px 20px;
+	font-size: 16px;
+	color: black;
+	word-wrap: break-word;
+}
+#mscontent{
+	margin-top: 0;
+	margin-bottom: 30px;
+		margin-left: 20px;
+	font-size: 14px;
+	color: #757575;
+	  font-weight: 400;
+}
+.hfname{
+	margin: 20px 20px 0 20px;
+	padding: 0;
+	color: #0e90d2;
+	font-size: 0.6em;
+}
+.hfcontent{
+	margin: 5px 20px 0 20px;
+	padding: 0;
+	color: #757575;
+	font-size: 0.6em;
+}
+.time{
+	float: right;
+	margin-top: -30px;
+	color: #0e90d2;
+	margin-right: 20px;
+}
+#addreply{
+width: 50px;
+  position: fixed;
+  height: 50px;
+  background-color: blue;
+  border-radius: 50%;
+  right: 10px;
+}
+
+div#addreply::before {
+  content: "+";
+  color: white;
+  font-size: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  }
+
+  /*ZxlslbCPT*/
+  .zxls{
+  	float: left;
+  }
+  .vname{
+  	color: #0e90d2;
+  	margin: 5px 20px 0 20px;
+  }
+  .trequirement{
+  	color: #757575;
+  	font-size: 0.8em;
+  	margin: 5px 20px 0 20px;
+  	float: left;
+  }
+  .zxbtn{
+  	float: right;
+  }
+  .titlezx{
+  	font-size: 1.4em;
+  	margin: 0;
+  	padding: 0;
+  	margin-left: 20px;
+  	color:#0e90d2;
+  }
+  .lists{
+  	float: left;
+  }
+
+  /*Zjzx*/
+  .form1{
+  	width: 100%;
+  	margin: 40px 0 0 10%;
+  }
+  #zxtitle,#zxphone,#zxcontent,.zxlaw{
+  	width: 80%;
+  	border: 0;
+  	border-bottom: 1px solid #ccc;
+  	font-size: 0.8em;
+  }
+  .zxlaw{
+
+  }
+  .btnsubmit{
+  	display: block;
+  	width: 80%;
+  	margin: 20px 0 0 0;
+  }

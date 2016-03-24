@@ -11,12 +11,11 @@ class MfzxCPT extends React.Component{
 	        vphonenum:"",
 	        lawtype:"",
 	        tcontent:"",
-	        vphoto:"",
 	        ilid:"",
 	        message:[],
 	        isActive:false,
 	        modalStr:"",
-	        estatus:""
+	        estatus:"'专家咨询'"
 	    }
   }
 
@@ -40,17 +39,9 @@ class MfzxCPT extends React.Component{
 
   	changValue(e){
   		console.log(this.refs.content.getValue());
+  		console.log(this.refs.title.getValue());
+  		console.log(this.refs.phonenum.getValue());
   		let that = this;
-  		console.log(e.target.files[0]);
-  		var file = e.target.files[0];
-  		var reader = new FileReader();
-  	reader.onloadend=function(file){ //第六步 监听文件读取结束  this.result获取读取内容
-		// The end 处理
-		that.setState({
-			vphoto:this.result
-		})
-	} 
-	reader.readAsDataURL(file);//第七步 发起读取动作
   		that.setState({
 	  		vtitle:this.refs.title.getValue(),
 	 		vphonenum:this.refs.phonenum.getValue(),
@@ -73,13 +64,11 @@ class MfzxCPT extends React.Component{
 				"vtitle":this.state.vtitle,
 				"estatus":this.state.estatus,
 				"vphonenum":this.state.vphonenum,
-				"lawtype":this.state.lawtype,
+				"vlawtype":this.state.lawtype,
 				"tcontent":this.state.tcontent,
 				"ilid":this.state.ilid,
-				"tpicture":this.state.vphoto,
 				"callback":"message"
 		},
-		method:"POST",
 		headers:{},
 		callback:function(data){
 			console.log(data);
@@ -136,81 +125,43 @@ class MfzxCPT extends React.Component{
 		return(
 			<Form horizontal className="form1">
 				<Grid>
-		   			<Col sm={12}>
 		   				<Input 
-		   					label="咨询标题" 
+		   					placeholder="咨询标题"
 		   					ref="title" 
 		   					value={this.state.title} 
-		   					className="input1" 
-		   					labelClassName="am-u-sm-4" 
-		   					wrapperClassName="am-u-sm-10" 
+		   					id="zxtitle" 
+		   					icon="pencil"
 		   					onChange={_this.changValue.bind(_this)} />
-		   			</Col>
-		   			<Col sm={12}>
+		   			
+		   				<div>
 		   				<Input 
-		   					label="手机号码"
+		   					placeholder="手机号码"
 		   					ref="phonenum" 
 		   					value={this.state.phonenum} 
-		   					className="input1" 
-		   					labelClassName="am-u-sm-4" 
-		   					wrapperClassName="am-u-sm-10"
+		   					id="zxphone" 
+		   					icon="phone"
 		   					onChange={_this.changValue.bind(_this)} />
-		   			</Col>
-		    		<Col sm={12}>
-		    			<span className="law1">法律门类</span>
-		    		</Col>
-		    		<Col sm={12}>
-		    			<SelectCPT callbackGetvalue={_this.getvalue.bind(_this)}/>
-		    		</Col>
-		   			<Col sm={12}>
+		   				</div>
 		   				<Input 
 		   					type="textarea" 
-		   					id="text1" 
 		   					ref="content" 
 		   					value={this.state.content} 
-		   					className="input1" 
-		   					label="咨询子项" 
-		   					labelClassName="am-u-sm-4" 
-		   					wrapperClassName="am-u-sm-10" 
+		   					id="zxcontent" 
+		   					icon="book"
+		   					placeholder="请详细面试事件发生的时间、地点、经过及想获得的帮助"
 		   					onChange={_this.changValue.bind(_this)} />
-		   			</Col>
-		   			<Col sm={12}>
-		   				<div>
-			   				<Input 
-			   					type="file" 
-			   					className="input1" 
-			   					ref="photo" 
-			   					label="上传图片" 
-			   					labelClassName="am-u-sm-4"
-			   				    wrapperClassName="am-u-sm-10" 
-			   				    help="请选择所需上传的图片"
-			   				    onChange={_this.changValue.bind(_this)}/>
-			   				<Button 
-					            amStyle="secondary" 
-					            onClick={_this.updatephoto.bind(_this)}>
-					          上传
-				          	</Button>
-			          	</div>
-		   			</Col>
-		      		<Col sm={6}>
-		      			<Input 
-		      				type="reset"  
-		      				value="取消" 
-		      				className="but1" 
-		      				amStyle="danger" 
-		      				standalone 
-		      				onClick={_this.unSubmit.bind(_this)}/>
-		      		</Col>
-		      		<ModalTrigger  modal={modal} open={this.state.isActive}>
-		      		<Col sm={6}>
-		      			<Input 
-		      				type="submit" 
-		      				value="提交" 
-		      				className="but1" 
+		   			
+		    			<SelectCPT callbackGetvalue={_this.getvalue.bind(_this)}/>
+		    		
+		      		<ModalTrigger modal={modal} open={this.state.isActive}>
+		      
+		      			<Button  
 		      				amStyle="primary" 
-		      				standalone 
-		      				onClick={_this.handleSubmit.bind(_this)}/>
-		      		</Col>
+		      				className="btnsubmit"
+		      				onClick={_this.handleSubmit.bind(_this)}>
+		      				提交
+		      			</Button>
+		      	
     				</ModalTrigger> 
     			</Grid>
     		</Form>

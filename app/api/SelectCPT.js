@@ -28,7 +28,7 @@ class SelectCPT extends React.Component{
     }
     return (
       <div>
-        <Selected 
+        <Selected className="zxlaw"
           {...selects} 
           placeholder="请选择法律门类..." 
           onChange={_this.changValue.bind(_this)}/>

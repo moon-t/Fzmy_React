@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import  {List,ListItem,Badge,Pagination} from 'amazeui-react';
+import  {List,ListItem,Badge,Pagination,Divider} from 'amazeui-react';
 import Process  from '../api/process.js';
 class QueListCPT extends React.Component{
   constructor(props){
     super(props);
     this.state={
     lists : [],
-    start:"0",
-    limit:"20",
     newlists:[],
     count:"",
     pages:[]
@@ -20,16 +18,14 @@ class QueListCPT extends React.Component{
       "url":"http://1.fzmy1.applinzi.com/index.php/Home/message/queryAllMessage?",
       options:{
         "name":"lists",
-        "callback":"lists",
-        start:that.state.start,
-        limit:that.state.limit
+        "callback":"lists"
       },
       headers:{},
       callback:function(data){
         data = JSON.parse(data.slice(0,-1).slice("lists".length+1));
         console.log(data.data.count);
         var newlists = [];
-        for(var i=0;i<10;i++){
+        for(var i=0;i<(data.data.count);i++){
           newlists[i]=data.data[i];
         }
         that.setState({
@@ -50,7 +46,7 @@ class QueListCPT extends React.Component{
       var imid = e.target.parentNode.children[1].textContent;
     }
       console.log(imid);
-     let add="/hflb?imid="+imid;
+     let add="/tzxq?imid="+imid;
     var router = this._reactInternalInstance._context.router;
     router.replace(add);
     
@@ -62,7 +58,13 @@ class QueListCPT extends React.Component{
     let lis = _this.state.lists.map(function(data,index){
       return (
         <div key={index} ref="iid" onClick={_this.routerto.bind(_this)}>
-          <span>【{data.estatus}】</span><span id="span1">{data.id}</span><span >{data.tcontent}</span>
+          <p className="qsstatus">{data.estatus}</p>
+          <span id="qsspan1">{data.id}</span>
+          <p className="qstitle">{data.vtitle}</p>
+            <ListItem id="qscontent" truncate>
+          {data.tcontent}
+          </ListItem>
+          <div className="gap"></div>
         </div>
       );
     });
@@ -84,6 +86,8 @@ class QueListCPT extends React.Component{
       <List static>
       {lis}
       </List>
+      
+
     );
 	}
 }
