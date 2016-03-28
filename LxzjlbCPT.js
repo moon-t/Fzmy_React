@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import  {List,Input,Button} from 'amazeui-react';
+import  {List,ListItem,Badge,FormGroup,Input,Button} from 'amazeui-react';
 import Process  from '../api/process.js';
-class ZxlslbCPT extends React.Component{
+class LxzjlbCPT extends React.Component{
 	constructor(props){
 	  super(props);
 	  this.state={
@@ -18,7 +18,7 @@ class ZxlslbCPT extends React.Component{
     	"url":"http://1.fzmy1.applinzi.com/index.php/Home/law/queryLawByEstatus?",
      	options:{
        	"name":"laws",
-        "estatus":"'在线'",
+        "estatus":"'离线'",
         "callback":"laws"
     	},
       headers:{},
@@ -33,10 +33,9 @@ class ZxlslbCPT extends React.Component{
     process.push();
   }
 
-  /*专家咨询按键的点击事件，实现选择专家进行咨询页面跳转*/
   handleClick(e){
     let ilid = e.target.value;
-    let add="/pfjy?ilid="+ilid+"?estatus='专家咨询'";
+    let add="/pfwh?ilid="+ilid+"?estatus='专家咨询'";
     var router = this._reactInternalInstance._context.router;
     router.replace(add);
   }
@@ -45,32 +44,25 @@ class ZxlslbCPT extends React.Component{
     let _this = this;
     let law = _this.state.laws.map(function(data,index){
       return (
-        <div className="zxls">
-          <div className="gap"></div>        
+        <div>
           <p className="vname">{data.vname}</p>
-          <p className="trequirement">
-          <span>{data.trequirement}</span>
+          <span className="trequirement">{data.trequirement}</span>
           <Button 
             amStyle="secondary" 
             ref="lawid" 
-            className="zxbtn"
-            amSize="xs"
             value={data.id} 
             onClick={_this.handleClick.bind(_this)}>
-            咨询
+          咨询
           </Button>
-          </p>
         </div>
       );
     });
     
     return (
       <List static>
-      <p className="titlezx">今日在线专家</p>
         {law}
       </List>
     );
   }
 }
-
-export default ZxlslbCPT;
+export default LxzjlbCPT;

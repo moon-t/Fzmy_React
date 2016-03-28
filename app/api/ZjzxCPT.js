@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import  {Input,Form,Grid,Col,ModalTrigger,Modal,Button} from 'amazeui-react';
+import  {Input,Form,Grid,ModalTrigger,Modal,Button} from 'amazeui-react';
 import SelectCPT from '../api/SelectCPT.js';
 import Process  from '../api/process.js';
 class MfzxCPT extends React.Component{
@@ -17,7 +17,7 @@ class MfzxCPT extends React.Component{
 	        modalStr:"",
 	        estatus:"'专家咨询'"
 	    }
-  }
+    }
 
     componentWillMount(){
 	  	let that = this;
@@ -28,19 +28,18 @@ class MfzxCPT extends React.Component{
 			ilid:ilidnew,
 			estatus:estatusnew
 		}); 
-  }
+    }
 
- 	getvalue(newvalue){
+    /*获取法律门类*/
+ 	getLawvalue(newvalue){
 	 	let that = this;
 	 	that.setState({
 	 		lawtype:newvalue
 	 	});
  	}
 
+ 	/*获取title、phonenum、content的值并改变对应初始值*/
   	changValue(e){
-  		console.log(this.refs.content.getValue());
-  		console.log(this.refs.title.getValue());
-  		console.log(this.refs.phonenum.getValue());
   		let that = this;
   		that.setState({
 	  		vtitle:this.refs.title.getValue(),
@@ -50,14 +49,9 @@ class MfzxCPT extends React.Component{
   		});
   	}
 
-
+  	/*提交咨询*/
   	handleSubmit(e){
  	let that = this;
-  	console.log(this.state.vtitle);
-  	console.log(this.state.vphonenum);
-  	console.log(this.state.tcontent);
-  	console.log(this.state.estatus);
-  	console.log(this.state.vphoto);
 		let process = new Process({
 			"url":"http://1.fzmy1.applinzi.com/index.php/Home/Message/addMessage",
 			options:{
@@ -88,25 +82,14 @@ class MfzxCPT extends React.Component{
 		}
 	});
 	process.push();
-  }
-  
-  	updatephoto(e){
-  		e.preventDefault();
-  		console.log("aa");
-  		this.setState({
-  			vphoto:this.refs.photo.getValue()
-  		});
-  		
-  	}
+    }
 
+    /*提交咨询后的提示框的点击跳转事件*/
   	handleClick(e){
   		e.preventDefault();
-  	    window.location.reload();
- 	}
-
- 	unSubmit(e){
- 		e.preventDefault();
- 		window.location.reload();
+  		let add="/pfwh";
+    	var router = this._reactInternalInstance._context.router;
+    	router.replace(add);
  	}
 
 	render (){
@@ -125,15 +108,15 @@ class MfzxCPT extends React.Component{
 		return(
 			<Form horizontal className="form1">
 				<Grid>
-		   				<Input 
-		   					placeholder="咨询标题"
-		   					ref="title" 
-		   					value={this.state.title} 
-		   					id="zxtitle" 
-		   					icon="pencil"
-		   					onChange={_this.changValue.bind(_this)} />
+		   			<Input 
+		   				placeholder="咨询标题"
+		   				ref="title" 
+		   				value={this.state.title} 
+		   				id="zxtitle" 
+		   				icon="pencil"
+		   				onChange={_this.changValue.bind(_this)} />
 		   			
-		   				<div>
+		   			<div>
 		   				<Input 
 		   					placeholder="手机号码"
 		   					ref="phonenum" 
@@ -141,7 +124,8 @@ class MfzxCPT extends React.Component{
 		   					id="zxphone" 
 		   					icon="phone"
 		   					onChange={_this.changValue.bind(_this)} />
-		   				</div>
+		   			</div>
+
 		   				<Input 
 		   					type="textarea" 
 		   					ref="content" 
@@ -150,22 +134,21 @@ class MfzxCPT extends React.Component{
 		   					icon="book"
 		   					placeholder="请详细面试事件发生的时间、地点、经过及想获得的帮助"
 		   					onChange={_this.changValue.bind(_this)} />
-		   			
-		    			<SelectCPT callbackGetvalue={_this.getvalue.bind(_this)}/>
-		    		
-		      		<ModalTrigger modal={modal} open={this.state.isActive}>
-		      
+
+		    		<SelectCPT callbackGetvalue={_this.getLawvalue.bind(_this)}/>	
+
+		      		<ModalTrigger modal={modal} open={this.state.isActive}>		      
 		      			<Button  
 		      				amStyle="primary" 
 		      				className="btnsubmit"
 		      				onClick={_this.handleSubmit.bind(_this)}>
 		      				提交
-		      			</Button>
-		      	
+		      			</Button>		      	
     				</ModalTrigger> 
     			</Grid>
     		</Form>
 		);
 	}
 }
+
 export default MfzxCPT;

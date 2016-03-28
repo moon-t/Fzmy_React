@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider , Container , Main,Panel,ListItem,List,Pagination,Table,Divider} from 'amazeui-react';
+import { Slider , Icon,Container ,Button,Input,Sticky, Main,Panel,ListItem,List,Pagination,Table,Divider} from 'amazeui-react';
 import Process  from './api/process.js';
 import Reply from './api/Reply.js';
 class Tzxq extends React.Component{
@@ -26,13 +26,13 @@ class Tzxq extends React.Component{
 			},
 			headers:{},
 			callback:function(data){
-				console.log(data.data);
+				console.log(data.rows);
 				data = JSON.parse(data.slice(0,-1).slice("lists".length+1));
 				that.setState({
-				title:data.data[0].vtitle,
-				mgcontent:data.data[0].mgcontent,
-				time:data.data[0].dtime,
-				lists: data.data,
+				title:data.rows[0].vtitle,
+				mgcontent:data.rows[0].mgcontent,
+				time:data.rows[0].dtime,
+				lists: data.rows,
 				imid:imid
 				});
 			}
@@ -40,10 +40,14 @@ class Tzxq extends React.Component{
 		process.push();
 	}
 
+	handleSubmit(){
+
+	}
+
 	render(){
 		let lists = this.state.lists;
 		lists = lists.shift();
-		console.log(this.state.mgcontent);
+		console.log(this.state.lists);
 		let lis = this.state.lists.map(function(data,index){
 			return (
 					<div>
@@ -55,7 +59,7 @@ class Tzxq extends React.Component{
 		});
 
 		return (
-			<div>
+			<div className="total">
 				<div className="vtitle">
 				 <h2 id="hftitle">{this.state.title}</h2>
 				 <p id="mscontent">{this.state.mgcontent}</p>
@@ -65,8 +69,7 @@ class Tzxq extends React.Component{
 				 <List >
 				 {lis}
 				 </List>
-				 <div id="addreply"></div>
-				 <Reply />
+				 <Reply ref="reply" value={this.state.imid}/>
 			</div>
 
 		)

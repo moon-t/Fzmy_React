@@ -10,6 +10,7 @@ class SelectCPT extends React.Component{
     }
   }
 
+  /*获取法律门类的值*/
   changValue(newvalue){
     let that = this;
     that.setState({
